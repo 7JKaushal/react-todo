@@ -8,10 +8,14 @@ const Form = ({ inputText, setInputText, todo, setTodos, setStatus }) => {
 
   const submitButtonHandler = (e) => {
     e.preventDefault();
-    setTodos([
-      ...todo,
-      { text: inputText, completed: false, id: Math.random() * 1000 },
-    ]);
+    if (inputText === "") {
+      window.alert("Enter the task");
+    } else {
+      setTodos([
+        ...todo,
+        { text: inputText, completed: false, id: Math.random() * 1000 },
+      ]);
+    }
     setInputText("");
   };
 
@@ -25,6 +29,7 @@ const Form = ({ inputText, setInputText, todo, setTodos, setStatus }) => {
         className="todo-input"
         onChange={inputTextHandler}
         value={inputText}
+        placeholder="Enter the task"
       />
       <button
         onClick={submitButtonHandler}
